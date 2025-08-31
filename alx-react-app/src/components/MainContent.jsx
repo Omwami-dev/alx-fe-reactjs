@@ -1,7 +1,7 @@
 function MainContent() {
   return (
     <main>
-      <p>I love coding as it makes me think wide.</p>
+      <p>I love to visit New York, Paris, and Tokyo.</p>
     </main>
   );
 }
