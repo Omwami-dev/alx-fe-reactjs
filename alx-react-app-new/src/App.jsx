@@ -7,6 +7,7 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import Counter from './components/Counter';
 
 function App() {
   const [count, setCount] = useState(0)
@@ -34,9 +35,12 @@ function App() {
       <UserProfile 
         name="Bob" 
         age={30} 
-        bio="Enjoys painting and traveling" 
-      />
-        <Footer />
+        bio="Enjoys painting and traveling"
+        />
+
+      <Counter />
+      <Footer/>
+
       </div>
       <h1>Vite + React</h1>
       <div className="card">
