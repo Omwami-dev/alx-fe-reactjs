@@ -4,20 +4,22 @@ function Navbar() {
   return (
     <nav
       style={{
+        display: "flex",              
+        justifyContent: "center",     
         backgroundColor: "#333",
         padding: "10px",
       }}
     >
-      <Link to="/" style={{ margin: "0 15px", color: "white" }}>
+      <Link to="/" style={{ margin: "0 15px", color: "white", textDecoration: "none" }}>
         Home
       </Link>
-      <Link to="/about" style={{ margin: "0 15px", color: "white" }}>
+      <Link to="/about" style={{ margin: "0 15px", color: "white", textDecoration: "none" }}>
         About
       </Link>
-      <Link to="/services" style={{ margin: "0 15px", color: "white" }}>
+      <Link to="/services" style={{ margin: "0 15px", color: "white", textDecoration: "none" }}>
         Services
       </Link>
-      <Link to="/contact" style={{ margin: "0 15px", color: "white" }}>
+      <Link to="/contact" style={{ margin: "0 15px", color: "white", textDecoration: "none" }}>
         Contact
       </Link>
     </nav>
