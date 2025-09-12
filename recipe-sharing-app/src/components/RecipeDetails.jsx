@@ -7,8 +7,14 @@ const RecipeDetails = () => {
     state.recipes.find((r) => r.id === Number(id))
   );
 
+  // 👇 Guard clause prevents crash
   if (!recipe) {
-    return <p>Recipe not found ❌</p>;
+    return (
+      <div>
+        <p>Recipe not found ❌</p>
+        <Link to="/">Back to Home</Link>
+      </div>
+    );
   }
 
   return (
@@ -21,4 +27,5 @@ const RecipeDetails = () => {
 };
 
 export default RecipeDetails;
+
 

@@ -1,45 +1,29 @@
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Link,
-} from "react-router-dom";
-
-import AddRecipeForm from "./components/AddRecipeForm";
-import RecipeList from "./components/RecipeList";
-import RecipeDetails from "./components/RecipeDetails";
-import EditRecipeForm from "./components/EditRecipeForm";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 
 function Home() {
   return (
     <div>
-      <AddRecipeForm />
-      <RecipeList />
+      <h2>Home Page</h2>
+      <p>
+        <Link to="/recipes/1">Go to Recipe 1</Link>
+      </p>
     </div>
   );
 }
 
-const router = createBrowserRouter([
-  { path: "/", element: <Home /> },
-  { path: "/recipes/:id", element: <RecipeDetails /> },
-  { path: "/recipes/:id/edit", element: <EditRecipeForm /> },
-]);
+function RecipeDetails() {
+  return <h2>Recipe Details Page</h2>;
+}
 
-function App() {
+export default function App() {
   return (
-    <div style={{ maxWidth: 800, margin: "0 auto", padding: 20 }}>
-      <header style={{ marginBottom: 18 }}>
-        <h1>🍲 Recipe Sharing App</h1>
-        <nav>
-          <Link to="/">Home</Link>
-        </nav>
-      </header>
-
-      <main>
-        <RouterProvider router={router} />
-      </main>
-    </div>
+    <BrowserRouter>
+      <h1>🍲 Recipe Sharing App</h1>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/recipes/:id" element={<RecipeDetails />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
-
-export default App;
 
