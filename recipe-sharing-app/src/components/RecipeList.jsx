@@ -1,8 +1,14 @@
 import { Link } from "react-router-dom";
-import { useRecipeStore } from "../store/recipeStore";
+import useRecipeStore from "../store/recipeStore";
 
 const RecipeList = () => {
-  const recipes = useRecipeStore((state) => state.recipes);
+  const recipes = useRecipeStore((state) =>
+    state.searchTerm ? state.filteredRecipes : state.recipes
+  );
+
+  if (recipes.length === 0) {
+    return <p>No recipes found 🔍</p>;
+  }
 
   return (
     <div>
@@ -19,5 +25,6 @@ const RecipeList = () => {
 };
 
 export default RecipeList;
+
 
 
