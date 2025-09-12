@@ -1,70 +1,49 @@
-import { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useRecipeStore } from '../store/recipeStore';
+import { useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import useRecipeStore from "./recipeStore";
 
 const EditRecipeForm = () => {
   const { id } = useParams();
-  const recipeId = Number(id);
   const navigate = useNavigate();
+  const { recipes, updateRecipe } = useRecipeStore();
 
-  const recipe = useRecipeStore((s) =>
-    s.recipes.find((r) => r.id === recipeId)
-  );
+  const recipe = recipes.find((r) => r.id === Number(id));
 
-  const updateRecipe = useRecipeStore((s) => s.updateRecipe);
-
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-
-  // populate form when recipe loads
-  useEffect(() => {
-    if (recipe) {
-      setTitle(recipe.title || '');
-      setDescription(recipe.description || '');
-    }
-  }, [recipe]);
+  const [title, setTitle] = useState(recipe?.title || "");
+  const [description, setDescription] = useState(recipe?.description || "");
 
   if (!recipe) {
-    return (
-      <div>
-        <h2>Recipe not found</h2>
-        <button onClick={() => navigate('/')}>Back</button>
-      </div>
-    );
+    return <p>Recipe not found ❌</p>;
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!title.trim() || !description.trim()) return;
+  const handleSubmit = (event) => {
+    event.preventDefault(); // ✅ prevents page reload
 
-    updateRecipe(recipeId, { title: title.trim(), description: description.trim() });
-    navigate(`/recipes/${recipeId}`); // back to details
+    updateRecipe(recipe.id, { title, description });
+    navigate(`/recipes/${recipe.id}`);
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <h2>Edit Recipe</h2>
-      <input
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-        placeholder="Title"
-        style={{ display: 'block', width: '100%', marginBottom: 8 }}
-      />
-      <textarea
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
-        placeholder="Description"
-        rows={5}
-        style={{ display: 'block', width: '100%', marginBottom: 8 }}
-      />
-      <button type="submit">Save</button>
-      <button
-        type="button"
-        onClick={() => navigate(-1)}
-        style={{ marginLeft: 8 }}
-      >
-        Cancel
-      </button>
+      <div>
+        <label>Title: </label>
+        <input
+          type="text"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          required
+        />
+      </div>
+      <div>
+        <label>Description: </label>
+        <textarea
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          required
+        />
+      </div>
+      <button type="submit">Update</button>
     </form>
   );
 };
