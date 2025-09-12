@@ -1,4 +1,9 @@
-import { createBrowserRouter, RouterProvider, Link } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Link,
+} from "react-router-dom";
+
 import AddRecipeForm from "./components/AddRecipeForm";
 import RecipeList from "./components/RecipeList";
 import RecipeDetails from "./components/RecipeDetails";
@@ -13,20 +18,10 @@ function Home() {
   );
 }
 
-// Define routes
 const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Home />,
-  },
-  {
-    path: "/recipes/:id",
-    element: <RecipeDetails />,
-  },
-  {
-    path: "/recipes/:id/edit",
-    element: <EditRecipeForm />,
-  },
+  { path: "/", element: <Home /> },
+  { path: "/recipes/:id", element: <RecipeDetails /> },
+  { path: "/recipes/:id/edit", element: <EditRecipeForm /> },
 ]);
 
 function App() {
@@ -47,3 +42,4 @@ function App() {
 }
 
 export default App;
+
