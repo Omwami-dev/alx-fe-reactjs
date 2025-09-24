@@ -43,15 +43,4 @@ const Search = () => {
 
       {userData && (
         <div style={{ marginTop: "2rem" }}>
-          <img src={userData.avatar_url} alt={userData.login} width="150" />
-          <h2>{userData.name || userData.login}</h2>
-          <a href={userData.html_url} target="_blank" rel="noreferrer">
-            Visit GitHub Profile
-          </a>
-        </div>
-      )}
-    </div>
-  );
-};
-
-export default Search;
+     
