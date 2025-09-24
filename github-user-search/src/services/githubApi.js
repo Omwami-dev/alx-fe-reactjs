@@ -1,5 +1,6 @@
 import axios from "axios";
 
+// Base GitHub API URL from .env
 const API_URL = import.meta.env.VITE_APP_GITHUB_API_URL;
 
 export const fetchUserData = async (username) => {
@@ -10,3 +11,4 @@ export const fetchUserData = async (username) => {
     throw new Error("User not found");
   }
 };
+
